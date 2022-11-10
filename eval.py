@@ -35,7 +35,7 @@ def eval(config):
         for surface_pointcloud, testing_points  in testloader_t:
 
             surface_pointcloud = surface_pointcloud.to(device)
-            testing_points = testing_points.to(device)*3
+            testing_points = testing_points.to(device)
             occupancies, primitive_sdfs, primitive_parameters, support_distances = model(surface_pointcloud.transpose(2,1), testing_points[:,:,:3], is_training=True)
             loss_dict = criterion(occupancies, testing_points[:,:,-1], primitive_sdfs, primitive_parameters, support_distances)
 
